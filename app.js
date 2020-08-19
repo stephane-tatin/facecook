@@ -8,10 +8,10 @@ const recipes = require("./routes/api/recipes")
 
 // Express app
 const app = express()
+app.use(express.json());
 
 //register view engine
 app.set("view engine", "ejs")
-
 
 
 
@@ -34,27 +34,6 @@ app.use(morgan("dev"))
 
 app.use("/api/recipes", recipes)
 
-app.get("/add-recipe", (req, res) => {
-  const recipe = new Recipe({
-      title: "pizza",
-      userId : 25,
-      ingredients : [
-          {"tomatoes" : "500"},
-          {"mozza" : "5"},
-          {"olives" :"10"}
-      ]
-  }) 
-}) 
-
-  app.get("/all-recipes", (req, res) => {
-   
-    Recipe.find()
-  .then((result) => {
-    res.send(result)   
-  }).catch((err) => {
-      console.log(err)
-  })
-})
 
 app.get("/", (req, res) => {   
     const blogs = [

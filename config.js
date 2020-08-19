@@ -1,1 +1,0 @@
-const DB = "mongodb+srv://stef:stefpass@journalapp-a5pnu.mongodb.net/Facecook-app?retryWrites=true&w=majority"

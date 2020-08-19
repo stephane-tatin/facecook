@@ -1,24 +1,20 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const RecipeSchema = new Schema({
-    userId : {
+const UserSchema = new Schema({
+    name : {
         type:String,
         required : true
     },
-    title : {
+    email : {
         type:String,
         required : true
     },
-    presentation : {
+    password : {
         type:String,
         required : true
     },
-    steps : {
-        type: Array,
-        required : true
-    },
-    ingredients : {
+    friends : {
         type: Array,
         required : true
     },
