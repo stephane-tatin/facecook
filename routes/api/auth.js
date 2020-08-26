@@ -1,38 +1,40 @@
 const express = require("express")
 const router = express.Router()
 
-const { user_index, user_show, user_store, user_update, user_destroy } = require("../../controllers/recipeController")
+const {
+    signup_get,
+    signup_post,
+    login_get,
+    logout_get,
+    login_post
+} = require("../../controllers/authController")
+
+// route GET api/auth
+// get all the recipes, @desc by creation date
+// @ access public then private
+router.get("/signup", signup_get)
+
 
 // route GET api/recipes
 // get all the recipes, @desc by creation date
 // @ access public then private
-router.get("/signup", user_index)
-
-
-// route GET api/recipes
-// get all the recipes, @desc by creation date
-// @ access public then private
-router.get("/login", user )
+router.get("/login", login_get)
 
 // route POST api/recipes
 // post one recipe, @desc by creation date
 // @ access public
-router.post("/signup", recipe_store)
+router.post("/signup", signup_post)
 
 // route POST api/recipes
 // post one recipe, @desc by creation date
 // @ access public
-router.post("/login", recipe_store)
+router.post("/login", login_post)
 
 
 // route GET api/recipes
 // get all the recipes, @desc by creation date
 // @ access public then private
-router.get("/logout", recipe_show )
+router.get("/logout", logout_get)
 
-// route Put api/recipes/:id
-// look for a recipe and update it
-// @ access public then private
-router.delete("/:id", recipe_destroy)
 
 module.exports = router

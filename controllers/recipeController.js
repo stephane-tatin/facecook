@@ -2,7 +2,7 @@ const Recipe = require("../models/Recipe")
 
 
 const recipe_index = (req, res) => {
-    
+
     Recipe.find()
         .sort({
             date: -1
@@ -13,7 +13,7 @@ const recipe_index = (req, res) => {
 }
 
 const recipe_show = (req, res) => {
-    
+
     Recipe.findById(req.params.id)
         .then(recipe => {
             res.json(recipe)
@@ -29,10 +29,11 @@ const recipe_store = (req, res) => {
     })
     recipe.save()
 
-    res.send({
-            status: 400
+    res.status(201).json(recipe)
+        .catch(err => {
+            console.log(err);
+            res.status(400)
         })
-        .catch(err => console.log(err))
 }
 
 const recipe_update = (req, res) => {
