@@ -1,4 +1,6 @@
 const Recipe = require("../models/Recipe")
+const bcrypt = require("bcrypt")
+const saltR = 10
 
 
 const recipe_index = (req, res) => {
@@ -20,20 +22,30 @@ const recipe_show = (req, res) => {
         }).catch(err => console.log(err))
 }
 
-const recipe_store = (req, res) => {
+const recipe_store = async (req, res) => {
 
-    const recipe = new Recipe({
-        title: req.body.title,
-        userId: req.body.userId,
-        ingredients: req.body.ingredients
-    })
-    recipe.save()
+    const {
+        presentation,
+        title,
+        userId,
+        ingredients
+    } = req.body
 
-    res.status(201).json(recipe)
-        .catch(err => {
-            console.log(err);
-            res.status(400)
-        })
+
+    try {
+
+        const recipe = await Recipe.create({
+            presentation,
+            title,
+            userId,
+            ingredients
+        });
+        res.status(201).json(recipe);
+    } catch (err) {
+
+        console.log(err)
+    }
+
 }
 
 const recipe_update = (req, res) => {

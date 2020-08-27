@@ -1,4 +1,6 @@
 const User = require("../models/User")
+const bcrypt = require("bcrypt")
+const saltR = 10
 
 //handle errors
 
@@ -11,8 +13,6 @@ const handleErrors = (err, res) => {
         email: "",
         password: ""
     }
-
-    console.log(err.code)
 
     //duplicate error code
     if (err.code = 11000) {
@@ -37,8 +37,10 @@ const signup_get = (req, res) => {
     res.send("signup")
 }
 
-const login_get = (req, res) => {
-    res.send('login')
+const login_get = async (req, res) => {
+
+
+
 }
 
 const signup_post = async (req, res) => {
@@ -51,13 +53,24 @@ const signup_post = async (req, res) => {
 
     try {
 
-        await User.create({
-            name,
-            email,
-            password,
-            friends
-        })
+        await bcrypt.genSalt(saltR, function (err, salt) {
+            bcrypt.hash(password, salt, function (err, hash) {
+                let user = User.create({
+                    name,
+                    email,
+                    password: hash,
+                    friends
+                })
+                return user
+
+            });
+        });
+
         res.status(201).json("user created")
+
+
+
+
 
     } catch (err) {
         handleErrors(err, res)
@@ -66,8 +79,27 @@ const signup_post = async (req, res) => {
 
 }
 
-const login_post = (req, res) => {
-    User.findById(req.params.id)
+const login_post = async (req, res) => {
+
+    let user = await User.find({
+        email: req.body.email
+    })
+
+    const match = await bcrypt.compare(req.body.password, user[0].password, (err, success) => {
+        if (err) {
+            console.log(err)
+        }
+        if (success) {
+            console.log("correspond")
+        } else {
+            console.log("not correspond")
+        }
+
+    });
+
+
+
+
 
 }
 

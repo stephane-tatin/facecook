@@ -29,9 +29,14 @@ const RecipeSchema = new Schema({
 
 })
 
-RecipeSchema.post("save", (doc, next) => {
-    console.log("a recipe was saved", doc)
+RecipeSchema.pre('save', (next) => {
+    console.log("a recipe is about was saved", this)
+    console.log(this.password)
+    next()
+})
 
+RecipeSchema.post('save', (doc, next) => {
+    console.log("a recipe was saved", doc)
     next()
 })
 

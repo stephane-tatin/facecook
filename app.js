@@ -16,6 +16,7 @@ app.use(express.json());
 //register view engine
 app.set("view engine", "ejs")
 
+const DB = "mongodb+srv://stef:stefpass@journalapp-a5pnu.mongodb.net/Facecook-app?retryWrites=true&w=majority"
 
 const DBOption = {
     useNewUrlParser: true,

@@ -1,6 +1,9 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 const validator = require("validator")
+const bcrypt = require("bcrypt")
+
+const salt = 10
 
 const UserSchema = new Schema({
     name: {
@@ -29,10 +32,5 @@ const UserSchema = new Schema({
 
 })
 
-UserSchema.post('create', (doc, next) => {
-    console.log("a recipe was saved", doc)
-
-    next()
-})
 
 module.exports = User = mongoose.model("user", UserSchema)
