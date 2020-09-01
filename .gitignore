@@ -2,8 +2,9 @@
 config.js
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,react
+
+# Created by https://www.toptal.com/developers/gitignore/api/react,node
+# Edit at https://www.toptal.com/developers/gitignore?templates=react,node
 
 ### Node ###
 # Logs
@@ -127,4 +128,4 @@ psd
 thumb
 sketch
 
-# End of https://www.toptal.com/developers/gitignore/api/node,react
+# End of https://www.toptal.com/developers/gitignore/api/react,node

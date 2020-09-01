@@ -2,16 +2,24 @@ import React, {
     Component
 } from 'react';
 import { connect } from "react-redux";
+import { recipesIndex } from "../actions/RecipeActions"
 
 class RecipesList extends Component {    
-    render() {
-        const { recipes } = this.state 
 
+
+    componentDidMount(){
+        this.props.recipesIndex()
+    }
+
+    render() {
+
+        const { recipes } = this.props
+        
         console.log(recipes)
 
         return (
             <div>
-
+                Stuff
             </div>
         );
     }
@@ -24,4 +32,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(RecipesList);
+export default connect( mapStateToProps, { recipesIndex })(RecipesList);

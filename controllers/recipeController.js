@@ -1,6 +1,5 @@
 const Recipe = require("../models/Recipe")
-const bcrypt = require("bcrypt")
-const saltR = 10
+
 
 
 const recipe_index = (req, res) => {

@@ -1,6 +1,7 @@
 const initState = {
     recipes: [
-       { title : "cake"}
+       {id: 1, title : "cake"},
+       {id: 2, title : "stuff"}
     ]
 }
 

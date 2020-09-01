@@ -2,11 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./App"
 import * as serviceWorker from './serviceWorker';
-import { createStore } from "redux"
+import { createStore , applyMiddleware, compose } from "redux"
 import { Provider } from "react-redux"
 import rootReducer from "./reducers/rootReducer"
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore(rootReducer)
+const initialState =  { recipes: [
+  {id: 1, title : "cake"},
+  {id: 2, title : "stuff"}
+]}
+const middleWare = [thunkMiddleware];
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeEnhancers(applyMiddleware(...middleWare))
+);
 
 ReactDOM.render(
   <React.StrictMode>
