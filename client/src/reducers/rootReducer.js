@@ -1,12 +1,9 @@
-const initState = {
-    recipes: [
-       {id: 1, title : "cake"},
-       {id: 2, title : "stuff"}
-    ]
-}
+import {combineReducers} from "redux"
+import recipesReducer from "./recipesReducer"
 
-const rootReducer = (state = initState, action) => {
-    return state
-}
+
+const rootReducer = combineReducers({
+    recipes : recipesReducer
+})
 
 export default rootReducer;

@@ -7,10 +7,9 @@ import { Provider } from "react-redux"
 import rootReducer from "./reducers/rootReducer"
 import thunkMiddleware from 'redux-thunk';
 
-const initialState =  { recipes: [
-  {id: 1, title : "cake"},
-  {id: 2, title : "stuff"}
-]}
+import "bootstrap/dist/css/bootstrap.min.css"
+
+const initialState =  { }
 const middleWare = [thunkMiddleware];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

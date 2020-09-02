@@ -1,14 +1,18 @@
 import React from 'react';
-import RecipesList from './components/RecipesList';
-import Navbar from './components/Navbar';
+import RecipesListComponent from './components/RecipesListComponent';
+import NavbarComponent from './components/NavbarComponent';
+
+
 
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
-      <RecipesList></RecipesList>
+
+      <NavbarComponent></NavbarComponent>
+     <RecipesListComponent></RecipesListComponent>
+      
     </div>
   );
 }
