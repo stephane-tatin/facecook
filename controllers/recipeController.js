@@ -27,7 +27,8 @@ const recipe_store = async (req, res) => {
         presentation,
         title,
         userId,
-        ingredients
+        ingredients,
+        steps
     } = req.body
 
 
@@ -37,7 +38,8 @@ const recipe_store = async (req, res) => {
             presentation,
             title,
             userId,
-            ingredients
+            ingredients,
+            steps
         });
         res.status(201).json(recipe);
     } catch (err) {
