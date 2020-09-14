@@ -2,7 +2,8 @@ const initialState = {
     recipes : [],
     loading : false,
     loaded : false,
-    singleRecipe : null,
+    singleRecipe: null,
+    image : null
 }
 
 export default function (state = initialState, action) {
@@ -21,6 +22,16 @@ export default function (state = initialState, action) {
             loading: true,
             loaded: true,
             singleRecipe : action.payload
+        }
+        case "RECIPE_STORE": 
+        return {
+            ...state,
+            singleRecipe : null
+            }
+        case "IMAGE_RECIPE_STORE": 
+        return {
+            ...state,
+            image : null
         }
         default:
             return state

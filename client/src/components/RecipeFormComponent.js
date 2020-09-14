@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { connect } from "react-redux"
-import { recipeStore, recipeShow } from '../actions/RecipeActions';
+import { recipeStore, recipeShow, imageRecipeStore} from '../actions/RecipeActions';
 
 class RecipeFormComponent extends Component {
  
@@ -9,6 +9,7 @@ class RecipeFormComponent extends Component {
         recipe : {
             title: "",
             presentation: "",
+            file : "",
             userId : 555,
             steps : []
             
@@ -16,6 +17,7 @@ class RecipeFormComponent extends Component {
         },
         numberOfSteps : 1
     }
+
 
     onChange = (e) => {
         this.setState({
@@ -41,9 +43,32 @@ class RecipeFormComponent extends Component {
         })
     }
 
+    onChangePicture = (e) => {
+        console.log(e.target.name)
+        console.log(e.target.files[0])
+        let img = document.querySelector("#img1")
+              img.src = URL.createObjectURL(e.target.files[0])
+            this.setState({
+                recipe: {
+                    ...this.state.recipe,
+                    file: [
+                        {
+                            [e.target.name]: e.target.files[0]
+                        }
+                    ]
+
+                }
+
+            })
+        }
+
     onSubmit = () => {
+      
         const { recipe } = this.state
+  
         this.props.recipeStore(recipe)
+        this.props.imageRecipeStore(recipe.file)
+     
     }
 
     addSteps = () => {
@@ -66,9 +91,16 @@ class RecipeFormComponent extends Component {
 
 
     render() { 
-        return ( <div>
-
+        return (<div>
+            
             <Form>
+        
+                <FormGroup>
+                    <Input onChange={this.onChangePicture} type="file" name="picture" id="pictureInput" accept=".jpg, .jpeg, .png"></Input>
+                    
+                        <img id="img1" src="" height="200"></img> 
+                    
+                </FormGroup>
                 <FormGroup>
                     <Label>Title of your recipe</Label>
                     <Input onChange={this.onChange} type="text" placeholder="What id the name of your recipe ?"  name="title"></Input>
@@ -93,4 +125,4 @@ class RecipeFormComponent extends Component {
 }
 
  
-export default connect(null, {recipeStore})(RecipeFormComponent);
+export default connect(null, {recipeStore, imageRecipeStore})(RecipeFormComponent);

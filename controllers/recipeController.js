@@ -23,7 +23,9 @@ const recipe_show = (req, res) => {
 
 const recipe_store = async (req, res) => {
 
+   
     const {
+        file,
         presentation,
         title,
         userId,
@@ -31,7 +33,8 @@ const recipe_store = async (req, res) => {
         steps
     } = req.body
 
-
+    console.log(file)
+    console.log(title)
     try {
 
         const recipe = await Recipe.create({

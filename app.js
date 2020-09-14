@@ -1,7 +1,8 @@
 const express = require("express")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
-const cors = require ("cors")
+const cors = require("cors")
+const multer = require("multer")
 
 const {
     result
@@ -10,12 +11,13 @@ const Recipe = require("./models/Recipe")
 
 const recipes = require("./routes/api/recipes")
 const auth = require("./routes/api/auth")
+const images = require("./routes/api/images")
+
 
 // Express app
 const app = express()
 app.use(express.json());
 app.use(cors())
-
 
 
 
@@ -42,6 +44,8 @@ app.use(morgan("dev"))
 
 app.use("/api/recipes", recipes)
 app.use("/api/auth", auth)
+app.use("/api/images", images)
+
 
 
 
