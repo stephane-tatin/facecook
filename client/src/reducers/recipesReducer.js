@@ -3,7 +3,7 @@ const initialState = {
     loading : false,
     loaded : false,
     singleRecipe: null,
-    image : null
+    file : null
 }
 
 export default function (state = initialState, action) {
@@ -31,7 +31,7 @@ export default function (state = initialState, action) {
         case "IMAGE_RECIPE_STORE": 
         return {
             ...state,
-            image : null
+            file : null
         }
         default:
             return state

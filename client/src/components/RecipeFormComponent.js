@@ -64,10 +64,13 @@ class RecipeFormComponent extends Component {
 
     onSubmit = () => {
       
+        const formData = new FormData()
+    
         const { recipe } = this.state
-  
+        console.log(recipe.file[0])
+        formData.append('file', recipe.file[0])
         this.props.recipeStore(recipe)
-        this.props.imageRecipeStore(recipe.file)
+        this.props.imageRecipeStore(recipe.file[0])
      
     }
 
@@ -96,7 +99,7 @@ class RecipeFormComponent extends Component {
             <Form>
         
                 <FormGroup>
-                    <Input onChange={this.onChangePicture} type="file" name="picture" id="pictureInput" accept=".jpg, .jpeg, .png"></Input>
+                    <Input onChange={this.onChangePicture} type="file" name="file" id="pictureInput" accept=".jpg, .jpeg, .png"></Input>
                     
                         <img id="img1" src="" height="200"></img> 
                     

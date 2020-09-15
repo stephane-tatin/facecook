@@ -2,7 +2,8 @@ const express = require("express")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const cors = require("cors")
-const multer = require("multer")
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 const {
     result
@@ -45,6 +46,17 @@ app.use(morgan("dev"))
 app.use("/api/recipes", recipes)
 app.use("/api/auth", auth)
 app.use("/api/images", images)
+
+app.post('/profile', upload.single('file'), function (req, res, next) {
+  
+    console.log(req.file)
+    if (!req.file) {
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
+      }
+        res.send(req.file)
+})
 
 
 
